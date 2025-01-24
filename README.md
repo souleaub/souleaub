@@ -1,5 +1,5 @@
 # 💫 About Me:
-Student, Gamer, Cybersecurity lover
+Student, Gamer, Cybersecurity enthusiast
 
 
 # 💻 Tech Stack:
