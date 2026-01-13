@@ -1,0 +1,143 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PANEL",
+    "meta": {
+        "version": "PLCN_v3",
+        "update_url": "https:\/\/raw.githubusercontent.com\/Luxxy-Hosting\/pterodactyl-hytale\/refs\/heads\/main\/egg-hytale-server.json"
+    },
+    "exported_at": "2026-01-13T14:11:50+00:00",
+    "name": "Hytale Server",
+    "author": "admin@luxxy.cloud",
+    "uuid": "14419ff1-32fd-423d-aa53-33c60f36ea72",
+    "description": null,
+    "image": null,
+    "tags": [],
+    "features": [],
+    "docker_images": {
+        "ghcr.io\/luxxy-gf\/temurin-25:latest": "ghcr.io\/luxxy-gf\/temurin-25:latest"
+    },
+    "file_denylist": [],
+    "startup_commands": {
+        "Default": ".\/start.sh"
+    },
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Hytale Server Booted!\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\nset -e\r\n\r\nexport DEBIAN_FRONTEND=noninteractive\r\n\r\necho \"Updating system...\"\r\napt-get update\r\napt-get upgrade -y\r\napt-get install -y curl unzip ca-certificates\r\napt-get autoremove -y\r\napt-get clean\r\nrm -rf \/var\/lib\/apt\/lists\/*",
+            "container": "debian:13-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Assets File Path",
+            "description": "Path to the Hytale assets archive.",
+            "env_variable": "ASSETS_PATH",
+            "default_value": "assets.zip",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 1
+        },
+        {
+            "name": "Authentication Mode",
+            "description": "Server authentication mode.",
+            "env_variable": "AUTH_MODE",
+            "default_value": "authenticated",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "in:authenticated,offline"
+            ],
+            "sort": 2
+        },
+        {
+            "name": "Accept Early Plugins",
+            "description": "Allow loading unsupported early plugins.",
+            "env_variable": "ACCEPT_EARLY_PLUGINS",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "in:true,false"
+            ],
+            "sort": 3
+        },
+        {
+            "name": "Allow OP Commands",
+            "description": "Allow operator commands on the server.",
+            "env_variable": "ALLOW_OP",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "in:true,false"
+            ],
+            "sort": 4
+        },
+        {
+            "name": "Enable Backups",
+            "description": "Enable automatic server backups.",
+            "env_variable": "ENABLE_BACKUPS",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "in:true,false"
+            ],
+            "sort": 5
+        },
+        {
+            "name": "Enable Backups",
+            "description": "Enable automatic server backups.",
+            "env_variable": "ENABLE_BACKUPS",
+            "default_value": "false",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "in:true,false"
+            ],
+            "sort": 6
+        },
+        {
+            "name": "Backup Directory",
+            "description": "Directory where backups will be stored.",
+            "env_variable": "BACKUP_DIR",
+            "default_value": "backups",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "string"
+            ],
+            "sort": 7
+        },
+        {
+            "name": "Backup Frequency (minutes)",
+            "description": "Automatic backup interval in minutes.",
+            "env_variable": "BACKUP_FREQUENCY",
+            "default_value": "60",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": [
+                "required",
+                "integer",
+                "min:5",
+                "max:1440"
+            ],
+            "sort": 8
+        }
+    ]
+}
